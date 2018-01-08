@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmnttech.me.common.server.database.mappers.SvcUserMapper" >
+  <resultMap id="BaseResultMap" type="com.mmnttech.me.common.server.database.entity.SvcUser" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="inst_id" property="instId" jdbcType="VARCHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="VARCHAR" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_card_id" property="userCardId" jdbcType="VARCHAR" />
+    <result column="user_addr" property="userAddr" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, inst_id, merchant_id, user_tel, user_pwd, user_name, user_card_id, user_addr, 
+    email, role_id, status, create_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmnttech.me.common.server.database.entity.SvcUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_svc_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_svc_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_svc_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mmnttech.me.common.server.database.entity.SvcUserExample" >
+    delete from t_svc_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
+    insert into t_svc_user (user_id, inst_id, merchant_id, 
+      user_tel, user_pwd, user_name, 
+      user_card_id, user_addr, email, 
+      role_id, status, create_date
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{instId,jdbcType=VARCHAR}, #{merchantId,jdbcType=VARCHAR}, 
+      #{userTel,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userCardId,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
+    insert into t_svc_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="instId != null" >
+        inst_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+      <if test="userPwd != null" >
+        user_pwd,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userCardId != null" >
+        user_card_id,
+      </if>
+      <if test="userAddr != null" >
+        user_addr,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="instId != null" >
+        #{instId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCardId != null" >
+        #{userCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null" >
+        #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mmnttech.me.common.server.database.entity.SvcUserExample" resultType="java.lang.Integer" >
+    select count(*) from t_svc_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_svc_user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instId != null" >
+        inst_id = #{record.instId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantId != null" >
+        merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userTel != null" >
+        user_tel = #{record.userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPwd != null" >
+        user_pwd = #{record.userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCardId != null" >
+        user_card_id = #{record.userCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAddr != null" >
+        user_addr = #{record.userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_svc_user
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      inst_id = #{record.instId,jdbcType=VARCHAR},
+      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      user_tel = #{record.userTel,jdbcType=VARCHAR},
+      user_pwd = #{record.userPwd,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_card_id = #{record.userCardId,jdbcType=VARCHAR},
+      user_addr = #{record.userAddr,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=CHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
+    update t_svc_user
+    <set >
+      <if test="instId != null" >
+        inst_id = #{instId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCardId != null" >
+        user_card_id = #{userCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null" >
+        user_addr = #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
+    update t_svc_user
+    set inst_id = #{instId,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_card_id = #{userCardId,jdbcType=VARCHAR},
+      user_addr = #{userAddr,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
