@@ -74,7 +74,10 @@
         <table tableName="t_goods_info" domainObjectName="GoodsInfo" enableInsert="true"></table> 
         -->
         
-        <table tableName="t_merchant_user" domainObjectName="MerchantUser" enableInsert="true"></table>
+        <table tableName="t_menu" domainObjectName="Menu" enableInsert="true"></table>
+        <table tableName="t_menu_group" domainObjectName="MenuGroup" enableInsert="true"></table>
+        <table tableName="t_role_menu_group" domainObjectName="RoleMenuGroup" enableInsert="true"></table>
+        <table tableName="t_role" domainObjectName="Role" enableInsert="true"></table>
     </context>
     
 </generatorConfiguration>  
