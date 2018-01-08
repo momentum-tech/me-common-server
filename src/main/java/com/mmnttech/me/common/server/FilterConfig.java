@@ -1,4 +1,4 @@
-package com.mmnttech.ma.merchant.server;
+package com.mmnttech.me.common.server;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

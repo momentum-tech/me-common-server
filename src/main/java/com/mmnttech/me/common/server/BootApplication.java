@@ -1,4 +1,4 @@
-package com.mmnttech.ma.merchant.server;
+package com.mmnttech.me.common.server;
 
 import javax.sql.DataSource;
 

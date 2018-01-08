@@ -1,4 +1,4 @@
-package com.mmnttech.ma.merchant.server.util;
+package com.mmnttech.me.common.server.util;
 
 /**
  * @类名 Validator

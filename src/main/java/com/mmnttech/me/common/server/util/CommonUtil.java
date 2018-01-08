@@ -1,4 +1,4 @@
-package com.mmnttech.ma.merchant.server.util;
+package com.mmnttech.me.common.server.util;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -9,8 +9,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
-
-import com.mmnttech.ma.merchant.server.common.entity.StaticResInfo;
 
 /**
  * @类名 CommonUtil
@@ -117,38 +115,6 @@ public class CommonUtil {
 		if (!folder.exists() && !folder.isDirectory()) {
 			folder.mkdir();
 		}
-	}
-	
-	
-	public static StaticResInfo getStaticResInfo(String rootPath, String resourceType) {
-		StaticResInfo staticResInfo = new StaticResInfo();
-
-		Calendar cal = Calendar.getInstance();
-		
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH);
-		int day = cal.get(Calendar.DATE);
-		
-		StringBuffer fileNamePre = new StringBuffer();
-		StringBuffer fileRelativePrefixStr = new StringBuffer();
-
-		fileNamePre.append(rootPath).append(File.separator).append(resourceType).append(File.separator).append(year);
-		createFileFolderIfNotExist(fileNamePre.toString());
-
-		fileNamePre.append(File.separator).append(month);
-		createFileFolderIfNotExist(fileNamePre.toString());
-
-		fileNamePre.append(File.separator).append(day);
-		createFileFolderIfNotExist(fileNamePre.toString());
-
-		fileRelativePrefixStr.append(resourceType).append(File.separator).append(year);
-		fileRelativePrefixStr.append(File.separator).append(month);
-		fileRelativePrefixStr.append(File.separator).append(day);
-		
-		staticResInfo.setFileNamePre(fileNamePre.toString());
-		staticResInfo.setFileRelativePrefixStr(fileRelativePrefixStr.toString());
-		
-		return staticResInfo;
 	}
 	
 	/**

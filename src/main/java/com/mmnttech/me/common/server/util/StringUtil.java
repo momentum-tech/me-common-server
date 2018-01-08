@@ -1,4 +1,4 @@
-package com.mmnttech.ma.merchant.server.util;
+package com.mmnttech.me.common.server.util;
 
 import java.security.MessageDigest;
 import java.util.UUID;
