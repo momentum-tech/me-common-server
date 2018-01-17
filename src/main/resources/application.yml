@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://124.207.111.79:3306/ma_db_tourism?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnectForPools=true&amp;autoReconnect=true
+    url: jdbc:mysql://111.231.201.90:3306/ma_db_tourism?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnectForPools=true&amp;autoReconnect=true
     username: ma_db_tourism
     password: 123456
 
@@ -11,7 +11,7 @@ mybatis:
     
 jedis :
   pool :
-    host : 124.207.111.79
+    host : 111.231.201.90
     port : 6379
     config :
       maxTotal: 100
