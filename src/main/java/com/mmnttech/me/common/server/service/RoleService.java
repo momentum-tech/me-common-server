@@ -77,7 +77,7 @@ public class RoleService {
 		List<Object> paramLst = new ArrayList<Object>();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT count(1) cnt FROM t_menu WHERE name = ? AND flatform = ? ");
+		sql.append("SELECT count(1) cnt FROM t_role WHERE name = ? AND platform = ? ");
 		
 		paramLst.add(role.getName());
 		paramLst.add(role.getPlatform());

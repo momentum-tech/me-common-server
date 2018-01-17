@@ -5,10 +5,6 @@ import java.util.Date;
 public class SvcUser {
     private String userId;
 
-    private String instId;
-
-    private String merchantId;
-
     private String userTel;
 
     private String userPwd;
@@ -33,22 +29,6 @@ public class SvcUser {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
-    }
-
-    public String getInstId() {
-        return instId;
-    }
-
-    public void setInstId(String instId) {
-        this.instId = instId == null ? null : instId.trim();
-    }
-
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId == null ? null : merchantId.trim();
     }
 
     public String getUserTel() {

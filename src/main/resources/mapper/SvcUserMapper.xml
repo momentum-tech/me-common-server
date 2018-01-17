@@ -3,8 +3,6 @@
 <mapper namespace="com.mmnttech.me.common.server.database.mappers.SvcUserMapper" >
   <resultMap id="BaseResultMap" type="com.mmnttech.me.common.server.database.entity.SvcUser" >
     <id column="user_id" property="userId" jdbcType="VARCHAR" />
-    <result column="inst_id" property="instId" jdbcType="VARCHAR" />
-    <result column="merchant_id" property="merchantId" jdbcType="VARCHAR" />
     <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
     <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -74,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, inst_id, merchant_id, user_tel, user_pwd, user_name, user_card_id, user_addr, 
-    email, role_id, status, create_date
+    user_id, user_tel, user_pwd, user_name, user_card_id, user_addr, email, role_id, 
+    status, create_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmnttech.me.common.server.database.entity.SvcUserExample" >
     select
@@ -108,28 +106,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
-    insert into t_svc_user (user_id, inst_id, merchant_id, 
-      user_tel, user_pwd, user_name, 
-      user_card_id, user_addr, email, 
-      role_id, status, create_date
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{instId,jdbcType=VARCHAR}, #{merchantId,jdbcType=VARCHAR}, 
-      #{userTel,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{userCardId,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{roleId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}
-      )
+    insert into t_svc_user (user_id, user_tel, user_pwd, 
+      user_name, user_card_id, user_addr, 
+      email, role_id, status, 
+      create_date)
+    values (#{userId,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userCardId,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
     insert into t_svc_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
-      </if>
-      <if test="instId != null" >
-        inst_id,
-      </if>
-      <if test="merchantId != null" >
-        merchant_id,
       </if>
       <if test="userTel != null" >
         user_tel,
@@ -162,12 +152,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="instId != null" >
-        #{instId,jdbcType=VARCHAR},
-      </if>
-      <if test="merchantId != null" >
-        #{merchantId,jdbcType=VARCHAR},
       </if>
       <if test="userTel != null" >
         #{userTel,jdbcType=VARCHAR},
@@ -210,12 +194,6 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.instId != null" >
-        inst_id = #{record.instId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.merchantId != null" >
-        merchant_id = #{record.merchantId,jdbcType=VARCHAR},
-      </if>
       <if test="record.userTel != null" >
         user_tel = #{record.userTel,jdbcType=VARCHAR},
       </if>
@@ -251,8 +229,6 @@
   <update id="updateByExample" parameterType="map" >
     update t_svc_user
     set user_id = #{record.userId,jdbcType=VARCHAR},
-      inst_id = #{record.instId,jdbcType=VARCHAR},
-      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
       user_tel = #{record.userTel,jdbcType=VARCHAR},
       user_pwd = #{record.userPwd,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
@@ -269,12 +245,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
     update t_svc_user
     <set >
-      <if test="instId != null" >
-        inst_id = #{instId,jdbcType=VARCHAR},
-      </if>
-      <if test="merchantId != null" >
-        merchant_id = #{merchantId,jdbcType=VARCHAR},
-      </if>
       <if test="userTel != null" >
         user_tel = #{userTel,jdbcType=VARCHAR},
       </if>
@@ -307,9 +277,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mmnttech.me.common.server.database.entity.SvcUser" >
     update t_svc_user
-    set inst_id = #{instId,jdbcType=VARCHAR},
-      merchant_id = #{merchantId,jdbcType=VARCHAR},
-      user_tel = #{userTel,jdbcType=VARCHAR},
+    set user_tel = #{userTel,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       user_card_id = #{userCardId,jdbcType=VARCHAR},

@@ -112,7 +112,7 @@ public class SvcUserMgmtService {
 		int offset = (queryEntity.getPage() - 1) * queryEntity.getRows();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT user.*, tt.inst_name FROM (SELECT * FROM t_svc_user WHERE 1 = 1");
+		sql.append("SELECT * FROM t_svc_user WHERE 1 = 1");
 		
 		if(Validator.isNotBlank(queryEntity.getUserTel())) {
 			sql.append(" AND user_tel like ?");
@@ -124,12 +124,7 @@ public class SvcUserMgmtService {
 			paramLst.add("%" + queryEntity.getUserName() + "%");
 		}
 
-		if(Validator.isNotBlank(queryEntity.getInstId())) {
-			sql.append(" AND inst_id = ?");
-			paramLst.add(queryEntity.getInstId());
-		}
-		
-		sql.append(")user LEFT JOIN t_inst tt ON user.inst_id = tt.inst_id ORDER BY user.create_date DESC LIMIT ?, ?");
+		sql.append(" ORDER BY create_date DESC LIMIT ?, ?");
 		paramLst.add(offset);
 		paramLst.add(queryEntity.getRows());
 		
