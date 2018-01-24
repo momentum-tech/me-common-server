@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mmnttech.me.common.server.database.mappers.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.mmnttech.me.common.server.database.entity.Role" >
+<mapper namespace="com.mmnttech.me.common.server.database.mappers.AreaCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.mmnttech.me.common.server.database.entity.AreaCode" >
     <id column="rec_id" property="recId" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="platform" property="platform" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="industry_code" property="industryCode" jdbcType="VARCHAR" />
     <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="com_memo" property="comMemo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="parent_area_id" property="parentAreaId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    rec_id, name, platform, create_date, industry_code, area_code
+    rec_id, area_code, area, level, com_memo, create_date, parent_area_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmnttech.me.common.server.database.entity.RoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmnttech.me.common.server.database.entity.AreaCodeExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_role
+    from t_area_code
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,96 +88,105 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from t_role
+    from t_area_code
     where rec_id = #{recId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from t_role
+    delete from t_area_code
     where rec_id = #{recId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmnttech.me.common.server.database.entity.RoleExample" >
-    delete from t_role
+  <delete id="deleteByExample" parameterType="com.mmnttech.me.common.server.database.entity.AreaCodeExample" >
+    delete from t_area_code
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmnttech.me.common.server.database.entity.Role" >
-    insert into t_role (rec_id, name, platform, 
-      create_date, industry_code, area_code
-      )
-    values (#{recId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{industryCode,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.mmnttech.me.common.server.database.entity.AreaCode" >
+    insert into t_area_code (rec_id, area_code, area, 
+      level, com_memo, create_date, 
+      parent_area_id)
+    values (#{recId,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{comMemo,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{parentAreaId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmnttech.me.common.server.database.entity.Role" >
-    insert into t_role
+  <insert id="insertSelective" parameterType="com.mmnttech.me.common.server.database.entity.AreaCode" >
+    insert into t_area_code
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="recId != null" >
         rec_id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="areaCode != null" >
+        area_code,
       </if>
-      <if test="platform != null" >
-        platform,
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="comMemo != null" >
+        com_memo,
       </if>
       <if test="createDate != null" >
         create_date,
       </if>
-      <if test="industryCode != null" >
-        industry_code,
-      </if>
-      <if test="areaCode != null" >
-        area_code,
+      <if test="parentAreaId != null" >
+        parent_area_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="recId != null" >
         #{recId,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="platform != null" >
-        #{platform,jdbcType=VARCHAR},
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="comMemo != null" >
+        #{comMemo,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="industryCode != null" >
-        #{industryCode,jdbcType=VARCHAR},
-      </if>
-      <if test="areaCode != null" >
-        #{areaCode,jdbcType=VARCHAR},
+      <if test="parentAreaId != null" >
+        #{parentAreaId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmnttech.me.common.server.database.entity.RoleExample" resultType="java.lang.Integer" >
-    select count(*) from t_role
+  <select id="countByExample" parameterType="com.mmnttech.me.common.server.database.entity.AreaCodeExample" resultType="java.lang.Integer" >
+    select count(*) from t_area_code
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_role
+    update t_area_code
     <set >
       <if test="record.recId != null" >
         rec_id = #{record.recId,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.areaCode != null" >
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.platform != null" >
-        platform = #{record.platform,jdbcType=VARCHAR},
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comMemo != null" >
+        com_memo = #{record.comMemo,jdbcType=VARCHAR},
       </if>
       <if test="record.createDate != null" >
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.industryCode != null" >
-        industry_code = #{record.industryCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.areaCode != null" >
-        area_code = #{record.areaCode,jdbcType=VARCHAR},
+      <if test="record.parentAreaId != null" >
+        parent_area_id = #{record.parentAreaId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -184,45 +194,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_role
+    update t_area_code
     set rec_id = #{record.recId,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      platform = #{record.platform,jdbcType=VARCHAR},
+      area_code = #{record.areaCode,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR},
+      com_memo = #{record.comMemo,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      industry_code = #{record.industryCode,jdbcType=VARCHAR},
-      area_code = #{record.areaCode,jdbcType=VARCHAR}
+      parent_area_id = #{record.parentAreaId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmnttech.me.common.server.database.entity.Role" >
-    update t_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmnttech.me.common.server.database.entity.AreaCode" >
+    update t_area_code
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="platform != null" >
-        platform = #{platform,jdbcType=VARCHAR},
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="comMemo != null" >
+        com_memo = #{comMemo,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null" >
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="industryCode != null" >
-        industry_code = #{industryCode,jdbcType=VARCHAR},
-      </if>
-      <if test="areaCode != null" >
-        area_code = #{areaCode,jdbcType=VARCHAR},
+      <if test="parentAreaId != null" >
+        parent_area_id = #{parentAreaId,jdbcType=VARCHAR},
       </if>
     </set>
     where rec_id = #{recId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmnttech.me.common.server.database.entity.Role" >
-    update t_role
-    set name = #{name,jdbcType=VARCHAR},
-      platform = #{platform,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.mmnttech.me.common.server.database.entity.AreaCode" >
+    update t_area_code
+    set area_code = #{areaCode,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      com_memo = #{comMemo,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      industry_code = #{industryCode,jdbcType=VARCHAR},
-      area_code = #{areaCode,jdbcType=VARCHAR}
+      parent_area_id = #{parentAreaId,jdbcType=VARCHAR}
     where rec_id = #{recId,jdbcType=VARCHAR}
   </update>
 </mapper>

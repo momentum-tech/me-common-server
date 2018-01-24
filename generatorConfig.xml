@@ -21,7 +21,7 @@
         <!-- 必须的(1 required) -->
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-            connectionURL="jdbc:mysql://121.199.38.132:3306/ma_db_tourism"
+            connectionURL="jdbc:mysql://111.231.201.90:3306/ma_db_tourism"
             userId="ma_db_tourism" password="123456">        
         </jdbcConnection>
         
@@ -74,7 +74,8 @@
         <table tableName="t_goods_info" domainObjectName="GoodsInfo" enableInsert="true"></table> 
         -->
         
-        <table tableName="t_svc_user" domainObjectName="SvcUser" enableInsert="true"></table>
+        <table tableName="t_area_code" domainObjectName="AreaCode" enableInsert="true"></table>
+        <table tableName="t_role" domainObjectName="Role" enableInsert="true"></table>
     </context>
     
 </generatorConfiguration>  

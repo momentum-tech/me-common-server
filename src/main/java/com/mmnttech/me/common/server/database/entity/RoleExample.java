@@ -374,6 +374,146 @@ public class RoleExample {
             addCriterion("create_date not between", value1, value2, "createDate");
             return (Criteria) this;
         }
+
+        public Criteria andIndustryCodeIsNull() {
+            addCriterion("industry_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeIsNotNull() {
+            addCriterion("industry_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeEqualTo(String value) {
+            addCriterion("industry_code =", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeNotEqualTo(String value) {
+            addCriterion("industry_code <>", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeGreaterThan(String value) {
+            addCriterion("industry_code >", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("industry_code >=", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeLessThan(String value) {
+            addCriterion("industry_code <", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeLessThanOrEqualTo(String value) {
+            addCriterion("industry_code <=", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeLike(String value) {
+            addCriterion("industry_code like", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeNotLike(String value) {
+            addCriterion("industry_code not like", value, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeIn(List<String> values) {
+            addCriterion("industry_code in", values, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeNotIn(List<String> values) {
+            addCriterion("industry_code not in", values, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeBetween(String value1, String value2) {
+            addCriterion("industry_code between", value1, value2, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryCodeNotBetween(String value1, String value2) {
+            addCriterion("industry_code not between", value1, value2, "industryCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeIsNull() {
+            addCriterion("area_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeIsNotNull() {
+            addCriterion("area_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeEqualTo(String value) {
+            addCriterion("area_code =", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeNotEqualTo(String value) {
+            addCriterion("area_code <>", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeGreaterThan(String value) {
+            addCriterion("area_code >", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("area_code >=", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeLessThan(String value) {
+            addCriterion("area_code <", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeLessThanOrEqualTo(String value) {
+            addCriterion("area_code <=", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeLike(String value) {
+            addCriterion("area_code like", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeNotLike(String value) {
+            addCriterion("area_code not like", value, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeIn(List<String> values) {
+            addCriterion("area_code in", values, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeNotIn(List<String> values) {
+            addCriterion("area_code not in", values, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeBetween(String value1, String value2) {
+            addCriterion("area_code between", value1, value2, "areaCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaCodeNotBetween(String value1, String value2) {
+            addCriterion("area_code not between", value1, value2, "areaCode");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

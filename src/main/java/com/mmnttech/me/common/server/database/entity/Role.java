@@ -11,6 +11,10 @@ public class Role {
 
     private Date createDate;
 
+    private String industryCode;
+
+    private String areaCode;
+
     public String getRecId() {
         return recId;
     }
@@ -41,5 +45,21 @@ public class Role {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getIndustryCode() {
+        return industryCode;
+    }
+
+    public void setIndustryCode(String industryCode) {
+        this.industryCode = industryCode == null ? null : industryCode.trim();
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 }

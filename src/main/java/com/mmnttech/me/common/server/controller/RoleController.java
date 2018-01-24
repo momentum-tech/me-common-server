@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mmnttech.me.common.server.common.entity.QueryEntity;
 import com.mmnttech.me.common.server.common.entity.RoleMenuBatchCreateEntity;
 import com.mmnttech.me.common.server.common.entity.RtnMessage;
+import com.mmnttech.me.common.server.database.entity.AreaCode;
 import com.mmnttech.me.common.server.database.entity.Role;
 import com.mmnttech.me.common.server.database.entity.RoleMenuGroup;
+import com.mmnttech.me.common.server.service.AreaService;
 import com.mmnttech.me.common.server.service.RoleService;
 
 /**
@@ -39,6 +41,9 @@ public class RoleController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private AreaService areaService;
 	
 	@ResponseBody
 	@RequestMapping(value = "queryRoleLst")
@@ -62,6 +67,11 @@ public class RoleController {
 			@ModelAttribute("role") Role role) {
 		RtnMessage rtnMsg = new RtnMessage();
 		try {
+			String areaCodeId = request.getParameter("areaCode");
+			if(areaCodeId != null) {
+				AreaCode areaCode = areaService.queryAreaCode(areaCodeId);
+				role.setAreaCode(areaCode.getAreaCode());
+			}
 			rtnMsg = roleService.createRole(role);
 		} catch (Exception e) {
 			logger.error("createRole 出现异常：", e);

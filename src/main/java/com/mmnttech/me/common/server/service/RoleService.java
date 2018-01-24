@@ -52,16 +52,22 @@ public class RoleService {
 		List<Object> paramLst = new ArrayList<Object>();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM t_role WHERE 1 = 1");
-		
+
+		sql.append("SELECT t2.* FROM (");
+		sql.append("SELECT t1.*, AC.area FROM (");
+		sql.append("SELECT ROLE.*, IDC.industry FROM (SELECT * FROM t_role WHERE 1 = 1");
+
 		if(Validator.isNotBlank(queryEntity.getQueryName())) {
 			sql.append(" AND name = ?");
 			paramLst.add(queryEntity.getQueryName());
 		}
 
+		sql.append(") ROLE LEFT JOIN (SELECT * FROM t_industry_code)IDC ON ROLE.industry_code = IDC.industry_code");
+		sql.append(")t1 LEFT JOIN (SELECT * FROM t_area_code) AC ON t1.area_code = AC.area_code");
+		sql.append(")t2");
+
 		int offset = (queryEntity.getPage() - 1) * queryEntity.getRows();
-		
-		sql.append(" ORDER BY create_date desc LIMIT ?, ?");
+		sql.append(" ORDER BY t2.create_date desc LIMIT ?, ?");
 		paramLst.add(offset);
 		paramLst.add(queryEntity.getRows());
 		

@@ -17,8 +17,10 @@ public class QueryEntity {
 	private String userId;
 	
 	private String merchId;
-	
-	private String storeId;
+
+    private String merchName;
+
+    private String storeId;
 	
 	private String menuGroupId;
 	
@@ -27,6 +29,10 @@ public class QueryEntity {
 	private String instId;
 	
 	private String roleId;
+	
+	private String parentId;
+	
+	private String industryCode;
 	
 	private String payName;
 	
@@ -51,6 +57,22 @@ public class QueryEntity {
 	private int rows = 20;
 	
 	private int page = 1;
+
+	public String getIndustryCode() {
+		return industryCode;
+	}
+
+	public void setIndustryCode(String industryCode) {
+		this.industryCode = industryCode;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 
 	public String getStoreId() {
 		return storeId;
@@ -211,5 +233,12 @@ public class QueryEntity {
 	public void setInstId(String instId) {
 		this.instId = instId;
 	}
-	
+
+    public String getMerchName() {
+        return merchName;
+    }
+
+    public void setMerchName(String merchName) {
+        this.merchName = merchName;
+    }
 }
